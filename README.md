@@ -1,0 +1,2 @@
+# TestDynamoDBTrigger
+As a trigger
