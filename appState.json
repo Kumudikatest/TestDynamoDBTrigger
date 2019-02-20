@@ -22,13 +22,13 @@
         "children": [],
         "isRemovable": true,
         "filePath": "TestDynamoDBTrigger/lambda.js",
-        "code": "exports.handler = function(event, context, callback) {\n    \n    callback(null, {\"message\": \"Successfully executed\"});\n}",
+        "code": "exports.handler = function(event, context, callback) {\n    \n    event.Records.forEach((record) => {\n        console.log(record.eventID);\n        console.log(record.eventName);\n        console.log('DynamoDB Record: %j', record.dynamodb);\n    });\n    return `Successfully processed ${event.Records.length} records.`;\n}",
         "triggers": [
           {
-            "resourceName": "ddbnew",
+            "resourceName": "ddbNew",
             "config": {
-              "StartingPosition": "LATEST",
-              "BatchSize": "10"
+              "StartingPosition": "TRIM_HORIZON",
+              "BatchSize": 100
             }
           }
         ],
@@ -56,250 +56,29 @@
     ],
     "currentFileId": "2aba08e8-67ba-406c-b27e-2901af5df131",
     "resources": {
-      "ddbSwaggerDetails": {
-        "name": "ddbSwaggerDetails",
-        "type": "DynamoDB",
-        "config": {
-          "mode": 1,
-          "table": {
-            "arn": "arn:aws:dynamodb:us-east-1:318300609668:table/SwaggerDetails",
-            "name": "SwaggerDetails",
-            "partitionKey": "apiName",
-            "partitionKeyType": "S",
-            "hasSortKey": true,
-            "sortKey": "apiVersion",
-            "sortKeyType": "S",
-            "mode": 1
-          },
-          "parameters": {
-            "mode": 1,
-            "table": {
-              "arn": "arn:aws:dynamodb:us-east-1:318300609668:table/SwaggerDetails",
-              "name": "SwaggerDetails",
-              "partitionKey": "apiName",
-              "partitionKeyType": "S",
-              "hasSortKey": true,
-              "sortKey": "apiVersion",
-              "sortKeyType": "S",
-              "mode": 1
-            },
-            "parameters": {
-              "mode": 1,
-              "table": {
-                "arn": "arn:aws:dynamodb:us-east-1:318300609668:table/SwaggerDetails",
-                "name": "SwaggerDetails",
-                "partitionKey": "apiName",
-                "partitionKeyType": "S",
-                "hasSortKey": true,
-                "sortKey": "apiVersion",
-                "sortKeyType": "S",
-                "mode": 1
-              },
-              "parameters": {
-                "mode": 1,
-                "table": {
-                  "arn": "arn:aws:dynamodb:us-east-1:318300609668:table/SwaggerDetails",
-                  "name": "SwaggerDetails",
-                  "partitionKey": "apiName",
-                  "partitionKeyType": "S",
-                  "hasSortKey": true,
-                  "sortKey": "apiVersion",
-                  "sortKeyType": "S",
-                  "mode": 1
-                },
-                "parameters": {
-                  "Key": {},
-                  "Item": {},
-                  "ExpressionAttributeValues": {}
-                },
-                "triggerParams": {
-                  "StartingPosition": "LATEST",
-                  "BatchSize": "100"
-                },
-                "validator": {
-                  "validatableFields": {},
-                  "validity": true
-                },
-                "valid": true,
-                "triggerConfig": {
-                  "StartingPosition": "LATEST",
-                  "BatchSize": "100"
-                },
-                "TableName": "SwaggerDetails"
-              },
-              "triggerParams": {
-                "StartingPosition": "TRIM_HORIZON",
-                "BatchSize": "100"
-              },
-              "validator": {
-                "validatableFields": {},
-                "validity": true
-              },
-              "valid": true,
-              "triggerConfig": {
-                "StartingPosition": "TRIM_HORIZON",
-                "BatchSize": "100"
-              },
-              "TableName": "SwaggerDetails"
-            },
-            "triggerParams": {
-              "StartingPosition": "AT_TIMESTAMP",
-              "BatchSize": "100"
-            },
-            "validator": {
-              "validatableFields": {},
-              "validity": true
-            },
-            "valid": true,
-            "triggerConfig": {
-              "StartingPosition": "AT_TIMESTAMP",
-              "BatchSize": "100"
-            },
-            "TableName": "SwaggerDetails"
-          },
-          "triggerParams": {
-            "StartingPosition": "AT_TIMESTAMP",
-            "BatchSize": "10"
-          },
-          "validator": {
-            "validatableFields": {},
-            "validity": true
-          },
-          "valid": true
-        },
-        "globallyEditable": false
-      },
-      "ddbnew": {
-        "name": "ddbnew",
+      "ddbNew": {
+        "name": "ddbNew",
         "type": "DynamoDB",
         "config": {
           "mode": 0,
           "table": {
             "arn": "",
-            "name": "new",
+            "name": "New",
             "partitionKey": "ID",
             "partitionKeyType": "N",
-            "hasSortKey": false,
-            "sortKey": "",
+            "hasSortKey": true,
+            "sortKey": "Name",
             "sortKeyType": "S",
             "mode": 0
           },
           "parameters": {
-            "mode": 1,
-            "table": {
-              "arn": "arn:aws:dynamodb:us-east-1:318300609668:table/SwaggerDetails",
-              "name": "SwaggerDetails",
-              "partitionKey": "apiName",
-              "partitionKeyType": "S",
-              "hasSortKey": true,
-              "sortKey": "apiVersion",
-              "sortKeyType": "S",
-              "mode": 1
-            },
-            "parameters": {
-              "mode": 1,
-              "table": {
-                "arn": "arn:aws:dynamodb:us-east-1:318300609668:table/SwaggerDetails",
-                "name": "SwaggerDetails",
-                "partitionKey": "apiName",
-                "partitionKeyType": "S",
-                "hasSortKey": true,
-                "sortKey": "apiVersion",
-                "sortKeyType": "S",
-                "mode": 1
-              },
-              "parameters": {
-                "mode": 1,
-                "table": {
-                  "arn": "arn:aws:dynamodb:us-east-1:318300609668:table/SwaggerDetails",
-                  "name": "SwaggerDetails",
-                  "partitionKey": "apiName",
-                  "partitionKeyType": "S",
-                  "hasSortKey": true,
-                  "sortKey": "apiVersion",
-                  "sortKeyType": "S",
-                  "mode": 1
-                },
-                "parameters": {
-                  "mode": 1,
-                  "table": {
-                    "arn": "arn:aws:dynamodb:us-east-1:318300609668:table/SwaggerDetails",
-                    "name": "SwaggerDetails",
-                    "partitionKey": "apiName",
-                    "partitionKeyType": "S",
-                    "hasSortKey": true,
-                    "sortKey": "apiVersion",
-                    "sortKeyType": "S",
-                    "mode": 1
-                  },
-                  "parameters": {
-                    "Key": {},
-                    "Item": {},
-                    "ExpressionAttributeValues": {}
-                  },
-                  "triggerParams": {
-                    "StartingPosition": "LATEST",
-                    "BatchSize": "100"
-                  },
-                  "validator": {
-                    "validatableFields": {},
-                    "validity": true
-                  },
-                  "valid": true,
-                  "triggerConfig": {
-                    "StartingPosition": "LATEST",
-                    "BatchSize": "100"
-                  },
-                  "TableName": "SwaggerDetails"
-                },
-                "triggerParams": {
-                  "StartingPosition": "TRIM_HORIZON",
-                  "BatchSize": "100"
-                },
-                "validator": {
-                  "validatableFields": {},
-                  "validity": true
-                },
-                "valid": true,
-                "triggerConfig": {
-                  "StartingPosition": "TRIM_HORIZON",
-                  "BatchSize": "100"
-                },
-                "TableName": "SwaggerDetails"
-              },
-              "triggerParams": {
-                "StartingPosition": "AT_TIMESTAMP",
-                "BatchSize": "100"
-              },
-              "validator": {
-                "validatableFields": {},
-                "validity": true
-              },
-              "valid": true,
-              "triggerConfig": {
-                "StartingPosition": "AT_TIMESTAMP",
-                "BatchSize": "100"
-              },
-              "TableName": "SwaggerDetails"
-            },
-            "triggerParams": {
-              "StartingPosition": "AT_TIMESTAMP",
-              "BatchSize": "10"
-            },
-            "validator": {
-              "validatableFields": {},
-              "validity": true
-            },
-            "valid": true,
-            "triggerConfig": {
-              "StartingPosition": "AT_TIMESTAMP",
-              "BatchSize": "10"
-            },
-            "TableName": "SwaggerDetails"
+            "Key": {},
+            "Item": {},
+            "ExpressionAttributeValues": {}
           },
           "triggerParams": {
-            "StartingPosition": "LATEST",
-            "BatchSize": "10"
+            "StartingPosition": "TRIM_HORIZON",
+            "BatchSize": 100
           },
           "validator": {
             "validatableFields": {},
@@ -335,7 +114,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1550210466522
+    "lastSave": 1550651627033
   },
   "VCS_STATE": {
     "provider": "GitHub",
