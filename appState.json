@@ -28,7 +28,8 @@
             "resourceName": "ddbNew",
             "config": {
               "StartingPosition": "TRIM_HORIZON",
-              "BatchSize": 100
+              "BatchSize": 100,
+              "StreamViewType": "NEW_IMAGE"
             }
           }
         ],
@@ -72,13 +73,41 @@
             "mode": 0
           },
           "parameters": {
-            "Key": {},
-            "Item": {},
-            "ExpressionAttributeValues": {}
+            "mode": 0,
+            "table": {
+              "arn": "",
+              "name": "New",
+              "partitionKey": "ID",
+              "partitionKeyType": "N",
+              "hasSortKey": true,
+              "sortKey": "Name",
+              "sortKeyType": "S",
+              "mode": 0
+            },
+            "parameters": {
+              "Key": {},
+              "Item": {},
+              "ExpressionAttributeValues": {}
+            },
+            "triggerParams": {
+              "StartingPosition": "TRIM_HORIZON",
+              "BatchSize": 100
+            },
+            "validator": {
+              "validatableFields": {},
+              "validity": true
+            },
+            "valid": true,
+            "triggerConfig": {
+              "StartingPosition": "TRIM_HORIZON",
+              "BatchSize": 100
+            },
+            "TableName": "New"
           },
           "triggerParams": {
             "StartingPosition": "TRIM_HORIZON",
-            "BatchSize": 100
+            "BatchSize": 100,
+            "StreamViewType": "NEW_IMAGE"
           },
           "validator": {
             "validatableFields": {},
@@ -114,7 +143,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1550651627033
+    "lastSave": 1552466167412
   },
   "VCS_STATE": {
     "provider": "GitHub",
